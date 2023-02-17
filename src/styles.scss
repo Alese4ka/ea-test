@@ -10,4 +10,6 @@ body {
   margin: 0 auto;
   height: 100%;
   position: relative;
+  background: url("/assets/img/right-back.png") no-repeat right top,
+    url("/assets/img/left-back.png") no-repeat left top;
 }
