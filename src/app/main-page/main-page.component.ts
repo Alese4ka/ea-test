@@ -9,6 +9,7 @@ import { interval, min, Observable, Subscription } from 'rxjs';
 export class MainPageComponent implements OnInit {
   public finalDate: number = new Date(2023, 4, 31).getTime();
   public countDownDate!: string;
+  public listNameOfCounter = ['Days', 'Hours', 'Minutes', 'Seconds'];
 
   dateInterval = setInterval(() => {
     const now: number = new Date().getTime();

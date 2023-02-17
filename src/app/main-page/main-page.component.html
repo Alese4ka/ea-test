@@ -1,38 +1,46 @@
 <div class="wrapper">
   <img src="/assets/img/logo.svg" alt="logo">
-  <div>
-    <h1>Under Construction</h1>
-    <h4>We're making lots of improvements and will be back soon</h4>
+  <div class="wrapper-text">
+    <h1 class="wrapper-text-title">Under Construction</h1>
+    <h4 class="wrapper-text-extra">We're making lots of improvements and will be back soon</h4>
   </div>
-  <div>
-    <p>{{countDownDate}}</p>
-    <p>Days</p>
-    <p>Hours</p>
-    <p>Minutes</p>
-    <p>Seconds</p>
+  <div class="wrapper-counter">
+    <div class="wrapper-counter-time">
+      {{countDownDate}}
+    </div>
+    <div class="wrapper-counter-list">
+      <div class="wrapper-counter-list">
+        <ng-container *ngFor="let list of listNameOfCounter">
+          <div class="wrapper-counter-list-container">
+            <div class="wrapper-counter-list-container-item">
+              {{list}}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="wrapper-event">
+      <h4 class="wrapper-text-extra">Check our event page when you wait:</h4>
+      <button mat-raised-button class="wrapper-event-button">
+        Go to the event
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            arrow_forward
+          </span>
+        </mat-icon>
+      </button>
+    </div>
+    <div class="wrapper-footer">
+      <!-- <mat-form-field appearance="fill"> -->
+      <input matInput class="wrapper-footer-input" type="text" placeholder="Enter your Email and get notified">
+      <button mat-mini-fab type="submit">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            arrow_forward
+          </span>
+        </mat-icon>
+      </button>
+
+      <!-- </mat-form-field> -->
+    </div>
   </div>
-  <div>
-    <h4>We're making lots of improvements and will be back soon</h4>
-    <button>
-      Go to the event
-      <mat-icon>
-        <span class="material-symbols-outlined">
-          arrow_forward
-        </span>
-      </mat-icon>
-    </button>
-  </div>
-  <div>
-    <!-- <mat-form-field appearance="fill"> -->
-    <mat-label>Input</mat-label>
-    <input matInput placeholder="Enter your Email and get notified">
-    <button type="submit">
-      <mat-icon>
-        <span class="material-symbols-outlined">
-          arrow_forward
-        </span>
-      </mat-icon>
-    </button>
-    <!-- </mat-form-field> -->
-  </div>
-</div>
