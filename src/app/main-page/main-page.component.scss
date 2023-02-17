@@ -1,3 +1,14 @@
+@mixin extra-text {
+  margin: 0 auto;
+  padding: 0;
+  width: 26.4375rem;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 150%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.8);
+}
+
 :host {
   .wrapper {
     display: flex;
@@ -24,14 +35,7 @@
       }
 
       &-extra {
-        margin: 0 auto;
-        padding: 0;
-        width: 26.4375rem;
-        font-weight: 400;
-        font-size: 1.125rem;
-        line-height: 150%;
-        text-align: center;
-        color: rgba(0, 0, 0, 0.8);
+        @include extra-text;
       }
     }
 
@@ -71,6 +75,10 @@
     &-event {
       margin: 0 auto;
       margin-top: 4.5rem;
+
+      &-text {
+        @include extra-text;
+      }
 
       &-button {
         margin: 0 auto;
@@ -123,6 +131,68 @@
         margin-left: -50px;
         background: #df2224;
         color: white;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        &-text {
+          &-title {
+            font-size: 36px;
+          }
+
+          &-extra {
+            width: 286px;
+            font-size: 1rem;
+          }
+        }
+
+        &-counter {
+          &-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-left: 0;
+          }
+
+          &-list {
+            align-items: center;
+            justify-content: center;
+            margin-left: 0;
+
+            &-container {
+              width: 64px;
+              height: 40px;
+              background-size: 100%;
+
+              &-item {
+                margin: 0.3rem auto;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+
+        &-event {
+          &-text {
+            width: 100%;
+            font-size: 1rem;
+          }
+        }
+
+        &-footer {
+          &-input {
+            width: 360px;
+            height: 41px;
+            font-size: 14px;
+          }
+
+          button[type="submit"] {
+            width: 33px;
+            height: 33px;
+          }
+        }
       }
     }
   }

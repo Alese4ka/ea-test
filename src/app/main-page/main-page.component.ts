@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { interval, min, Observable, Subscription } from 'rxjs';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-main-page',
@@ -9,7 +9,19 @@ import { interval, min, Observable, Subscription } from 'rxjs';
 export class MainPageComponent implements OnInit {
   public finalDate: number = new Date(2023, 4, 31).getTime();
   public countDownDate!: string;
-  public listNameOfCounter = ['Days', 'Hours', 'Minutes', 'Seconds'];
+  public listNameOfCounter: string[] = [];
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.breakpointObserver
+      .observe(['(max-width: 768px)'])
+      .subscribe((result: BreakpointState) => {
+        if (result.matches) {
+          this.listNameOfCounter = ['DD', 'HH', 'MM', 'SS'];
+        } else {
+          this.listNameOfCounter = ['Days', 'Hours', 'Minutes', 'Seconds'];
+        }
+      });
+  }
 
   dateInterval = setInterval(() => {
     const now: number = new Date().getTime();
@@ -41,7 +53,5 @@ export class MainPageComponent implements OnInit {
     }
   });
 
-  public ngOnInit(): void {
-    console.log(new Date(2023, 4, 31));
-  }
+  public ngOnInit(): void {}
 }
