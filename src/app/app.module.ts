@@ -10,11 +10,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
-import { SuccessModalComponent } from './main-page/success-modal/success-modal.component';
+import { PopUpComponent } from './main-page/pop-up/pop-up.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, MainPageComponent, SuccessModalComponent],
+  declarations: [AppComponent, MainPageComponent, PopUpComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     HttpClientModule,
     MatDialogModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

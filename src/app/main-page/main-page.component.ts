@@ -1,5 +1,15 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import {
+  AbstractControl,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { PopUpComponent } from './pop-up/pop-up.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SubscribeService } from '../services/subscribe.service';
 
 @Component({
   selector: 'app-main-page',
@@ -10,8 +20,15 @@ export class MainPageComponent implements OnInit {
   public finalDate: number = new Date(2023, 4, 31).getTime();
   public countDownDate!: string;
   public listNameOfCounter: string[] = [];
+  public subscribeForm!: UntypedFormGroup;
+  public t!: boolean;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private fb: UntypedFormBuilder,
+    private subscribeService: SubscribeService,
+    public dialog: MatDialog
+  ) {
     this.breakpointObserver
       .observe(['(max-width: 768px)'])
       .subscribe((result: BreakpointState) => {
@@ -53,5 +70,50 @@ export class MainPageComponent implements OnInit {
     }
   });
 
-  public ngOnInit(): void {}
+  get email(): AbstractControl<any, any> | null {
+    return this.subscribeForm.get('email');
+  }
+
+  public clearInput(): void {
+    if (this.email) {
+      this.email.reset();
+    }
+  }
+
+  public ngOnInit(): void {
+    this.subscribeForm = this.fb.group({
+      email: new UntypedFormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+    });
+  }
+
+  public async onSubmitted(): Promise<void> {
+    if (this.subscribeForm.valid) {
+      const { email } = this.subscribeForm.value;
+      this.subscribeService.postEmail(email).subscribe({
+        next: (data) => {
+          this.dialog.open(PopUpComponent, {
+            data: {
+              isSuccess: true,
+              isError: false,
+            },
+          });
+          this.clearInput();
+        },
+        error: (error) => {
+          console.warn(error.responseText);
+          console.log({ error });
+          this.dialog.open(PopUpComponent, {
+            data: {
+              isSuccess: false,
+              isError: true,
+            },
+          });
+          this.clearInput();
+        },
+      });
+    }
+  }
 }

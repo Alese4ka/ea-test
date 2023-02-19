@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <img class="wrapper-logo" src="/assets/img/logo.svg" alt="logo">
+  <a href="#"><img class="wrapper-logo" src="/assets/img/logo.svg" alt="logo"></a>
   <div class="wrapper-text">
     <h1 class="wrapper-text-title">Under Construction</h1>
     <h4 class="wrapper-text-extra">We're making lots of improvements and will be back soon</h4>
@@ -22,25 +22,34 @@
     <div class="wrapper-event">
       <h4 class="wrapper-event-text">Check our event page when you wait:</h4>
       <button mat-raised-button class="wrapper-event-button">
-        Go to the event
-        <mat-icon>
-          <span class="material-symbols-outlined">
-            arrow_forward
-          </span>
-        </mat-icon>
+        <a href="https://egorovagency.by/#main" target="_blank">
+          Go to the event
+          <mat-icon class="wrapper-event-button-icon">
+            <span>
+              arrow_forward
+            </span>
+          </mat-icon>
+        </a>
       </button>
     </div>
     <div class="wrapper-footer">
-      <!-- <mat-form-field appearance="fill"> -->
-      <input matInput class="wrapper-footer-input" type="text" placeholder="Enter your Email and get notified">
-      <button mat-mini-fab type="submit">
-        <mat-icon>
-          <span class="material-symbols-outlined">
-            arrow_forward
-          </span>
-        </mat-icon>
-      </button>
-
-      <!-- </mat-form-field> -->
+      <form class="wrapper-footer-form" [formGroup]="subscribeForm" (ngSubmit)="onSubmitted()">
+        <input matInput id="email" class="wrapper-footer-form-input" type="email" matInput [formControlName]="'email'"
+          placeholder="Enter your Email and get notified">
+        <button mat-mini-fab [disabled]="!subscribeForm.valid" (ngSubmit)="onSubmitted()" type="submit">
+          <mat-icon>
+            <span>
+              arrow_forward
+            </span>
+          </mat-icon>
+        </button>
+      </form>
+      <div *ngIf="
+        subscribeForm.controls['email'].hasError('email') &&
+        !subscribeForm.controls['email'].hasError('required')
+      ;else content" class="wrapper-footer-error">
+        <span>Please enter a valid email address</span>
+      </div>
+      <ng-template #content><span>''</span></ng-template>
     </div>
   </div>

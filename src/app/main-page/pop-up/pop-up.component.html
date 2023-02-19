@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <button mat-dialog-close class="wrapper-close">
+    <mat-icon>
+      <span class="material-symbols-outlined">
+        close
+      </span>
+    </mat-icon>
+  </button>
+  <div class="wrapper-content">
+    <ng-container *ngIf="isSuccess">
+      <h1 mat-dialog-title class="wrapper-content-title">SUCCESS!</h1>
+      <h4 mat-dialog-content class="wrapper-content-text">You have successfully subscribed to the email newsletter</h4>
+    </ng-container>
+    <ng-container *ngIf="isError">
+      <h1 mat-dialog-title class="wrapper-content-title">Error!</h1>
+      <h4 mat-dialog-content class="wrapper-content-text">You don't subscribed to the email newsletter. Try again.</h4>
+    </ng-container>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close class="wrapper-content-button">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
