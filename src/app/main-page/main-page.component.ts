@@ -10,18 +10,75 @@ import {
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SubscribeService } from '../services/subscribe.service';
+import {
+  animate,
+  query,
+  stagger,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
+  animations: [
+    trigger('routeAnimations', [
+      state('enter', style({ height: '*', width: '*' })),
+      transition('* => enter', [
+        query('.logo', [
+          style({
+            opacity: 0,
+            transform: 'translateY(-100px)',
+          }),
+          stagger(-50, [
+            animate('400ms', style({ opacity: 1, transform: 'translateY(0)' })),
+          ]),
+        ]),
+        query('.text', [
+          style({
+            opacity: 0,
+            transform: 'translateY(-100px)',
+          }),
+          stagger(-50, [
+            animate('600ms', style({ opacity: 1, transform: 'translateY(0)' })),
+          ]),
+        ]),
+
+        query('.counter', [
+          style({
+            opacity: 0,
+            transform: 'translateY(-100px)',
+          }),
+          stagger(-50, [
+            animate('800ms', style({ opacity: 1, transform: 'translateY(0)' })),
+          ]),
+        ]),
+        query('.event', [
+          style({
+            opacity: 0,
+            transform: 'translateY(-100px)',
+          }),
+          stagger(-50, [
+            animate(
+              '1000ms',
+              style({ opacity: 1, transform: 'translateY(0)' })
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class MainPageComponent implements OnInit {
+  public animate = false;
+  public state = '';
   public finalDate: number = new Date(2023, 4, 31).getTime();
   public countDownDate!: string;
   public listNameOfCounter: string[] = [];
   public subscribeForm!: UntypedFormGroup;
-  public t!: boolean;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -81,6 +138,10 @@ export class MainPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    setTimeout(() => {
+      this.animate = true;
+    }, 2000);
+    this.state = 'enter';
     this.subscribeForm = this.fb.group({
       email: new UntypedFormControl('', [
         Validators.required,

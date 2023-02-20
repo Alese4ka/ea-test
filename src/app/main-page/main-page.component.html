@@ -1,55 +1,56 @@
-<div class="wrapper">
-  <a href="#"><img class="wrapper-logo" src="/assets/img/logo.svg" alt="logo"></a>
-  <div class="wrapper-text">
-    <h1 class="wrapper-text-title">Under Construction</h1>
-    <h4 class="wrapper-text-extra">We're making lots of improvements and will be back soon</h4>
+<div [@routeAnimations]="state" class="main">
+  <a href="#"><img class="main-logo logo" src="/assets/img/logo.svg" alt="logo"></a>
+  <div class="main-text text" [ngClass]="{animate: animate}">
+    <h1 class="main-text-title">Under Construction</h1>
+    <h4 class="main-text-extra">We're making lots of improvements and will be back soon</h4>
   </div>
-  <div class="wrapper-counter">
-    <div class="wrapper-counter-time">
+  <div class="main-counter counter" [ngClass]="{animate: animate}">
+    <div class="main-counter-time">
       {{countDownDate}}
     </div>
-    <div class="wrapper-counter-list">
-      <div class="wrapper-counter-list">
+    <div class="main-counter-list">
+      <div class="main-counter-list">
         <ng-container *ngFor="let list of listNameOfCounter">
-          <div class="wrapper-counter-list-container">
-            <div class="wrapper-counter-list-container-item">
+          <div class="main-counter-list-container">
+            <div class="main-counter-list-container-item">
               {{list}}
             </div>
           </div>
         </ng-container>
       </div>
     </div>
-    <div class="wrapper-event">
-      <h4 class="wrapper-event-text">Check our event page when you wait:</h4>
-      <button mat-raised-button class="wrapper-event-button">
-        <a href="https://egorovagency.by/#main" target="_blank">
-          Go to the event
-          <mat-icon class="wrapper-event-button-icon">
-            <span>
-              arrow_forward
-            </span>
-          </mat-icon>
-        </a>
-      </button>
-    </div>
-    <div class="wrapper-footer">
-      <form class="wrapper-footer-form" [formGroup]="subscribeForm" (ngSubmit)="onSubmitted()">
-        <input matInput id="email" class="wrapper-footer-form-input" type="email" matInput [formControlName]="'email'"
-          placeholder="Enter your Email and get notified">
-        <button mat-mini-fab [disabled]="!subscribeForm.valid" (ngSubmit)="onSubmitted()" type="submit">
-          <mat-icon>
-            <span>
-              arrow_forward
-            </span>
-          </mat-icon>
-        </button>
-      </form>
-      <div *ngIf="
+  </div>
+  <div class="main-event event" [ngClass]="{animate: animate}">
+    <h4 class="main-event-text">Check our event page when you wait:</h4>
+    <button mat-raised-button class="main-event-button">
+      <a href="https://egorovagency.by/#main" target="_blank">
+        Go to the event
+        <mat-icon class="main-event-button-icon">
+          <span>
+            arrow_forward
+          </span>
+        </mat-icon>
+      </a>
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <form class="footer-form" [formGroup]="subscribeForm" (ngSubmit)="onSubmitted()">
+    <input matInput id="email" class="footer-form-input" type="email" matInput [formControlName]="'email'"
+      placeholder="Enter your Email and get notified">
+    <button mat-mini-fab [disabled]="!subscribeForm.valid" (ngSubmit)="onSubmitted()" type="submit">
+      <mat-icon>
+        <span>
+          arrow_forward
+        </span>
+      </mat-icon>
+    </button>
+  </form>
+  <div *ngIf="
         subscribeForm.controls['email'].hasError('email') &&
         !subscribeForm.controls['email'].hasError('required')
-      ;else content" class="wrapper-footer-error">
-        <span>Please enter a valid email address</span>
-      </div>
-      <ng-template #content><span>''</span></ng-template>
-    </div>
+      ;else content" class="footer-error">
+    <span>Please enter a valid email address</span>
   </div>
+  <ng-template #content><span>''</span></ng-template>
+</div>
