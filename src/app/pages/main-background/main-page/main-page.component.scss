@@ -267,6 +267,17 @@
       font-weight: 400;
     }
 
+    &-events {
+      border: none;
+      cursor: pointer;
+      background-color: #162c4e;
+      display: flex;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: #ffffff;
+    }
+
     @media (max-width: 768px) {
       .footer {
         &-input {

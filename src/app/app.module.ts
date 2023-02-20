@@ -3,30 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
-import { PopUpComponent } from './main-page/pop-up/pop-up.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MainPageComponent } from './main-page/main-page.component';
+import { AllEventsComponent } from './pages/all-events/all-events.component';
+import { AppRoutingModule } from './app.routing.module';
+import { MainBackgroundModule } from './pages/main-background/main-background.module';
 
 @NgModule({
-  declarations: [AppComponent, MainPageComponent, PopUpComponent],
+  declarations: [AppComponent, AllEventsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    HttpClientModule,
-    MatDialogModule,
-    HttpClientModule,
+    AppRoutingModule,
+    MainBackgroundModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

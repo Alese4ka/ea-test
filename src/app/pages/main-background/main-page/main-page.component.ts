@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SubscribeService } from '../services/subscribe.service';
+import { SubscribeService } from '../../../services/subscribe.service';
 import {
   animate,
   query,
@@ -19,6 +19,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -84,7 +85,8 @@ export class MainPageComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private fb: UntypedFormBuilder,
     private subscribeService: SubscribeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
     this.breakpointObserver
       .observe(['(max-width: 768px)'])
@@ -148,6 +150,10 @@ export class MainPageComponent implements OnInit {
         Validators.email,
       ]),
     });
+  }
+
+  public openAllEventsPage(): void {
+    this.router.navigate(['/all-events']);
   }
 
   public async onSubmitted(): Promise<void> {
