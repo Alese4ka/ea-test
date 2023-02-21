@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AllEventsComponent } from './pages/all-events/all-events.component';
 import { AppRoutingModule } from './app.routing.module';
 import { MainBackgroundModule } from './pages/main-background/main-background.module';
+import { AllEventsComponent } from './pages/all-events/all-events.component';
 
 @NgModule({
   declarations: [AppComponent, AllEventsComponent],

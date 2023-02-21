@@ -1,1 +1,19 @@
-<p>all-events works!</p>
+<h1 class="title">All Events</h1>
+<div class="accordion-container">
+  <ng-container *ngFor="let event of events; let i = index">
+    <div class="panel" (click)="toggle(i)" [class]="event.active ? 'active' : 'not-active'">
+      <div class="id">{{event.id}}</div>
+      <div class="name">{{event.name}}</div>
+      <div class="tab">
+        <div class="tab-id">{{event.id}}</div>
+        <div class="tab-name">{{event.name}}</div>
+      </div>
+      <div class="info" *ngFor="let photo of event.photo">
+        <div class="info-id">{{event.id}}</div>
+        <div class="info-name">{{photo.name}}</div>
+        <div class="info-date">{{photo.date}}</div>
+        <div class="info-text">{{photo.text}}</div>
+      </div>
+    </div>
+  </ng-container>
+</div>
