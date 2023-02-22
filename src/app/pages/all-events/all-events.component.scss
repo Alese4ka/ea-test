@@ -1,0 +1,509 @@
+:host {
+  .wrapper {
+    height: 100%;
+  }
+  .title {
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 4.5rem;
+    line-height: 104%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #162c4e;
+    opacity: 0.39;
+  }
+
+  .accordion-container * {
+    box-sizing: border-box;
+  }
+
+  .accordion-container {
+    opacity: 0;
+    display: flex;
+    overflow: hidden;
+    margin: 20px;
+    height: 80%;
+    border-bottom: 4px solid #df2224;
+  }
+
+  .panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/img/back_mafia.png");
+    color: #fff;
+    flex: 0.5;
+    position: relative;
+    transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+    border-right: 4px solid #fff;
+  }
+
+  .panel div {
+    opacity: 0;
+    transition: opacity 0s ease-in 0s;
+  }
+
+  .panel.active {
+    background-image: url("/assets/img/mafia.jpeg");
+    flex: 5;
+  }
+
+  .panel.active div {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+  }
+
+  .not-active {
+    background: url("/assets/img/back_mafia.png");
+    flex: 0.5;
+    cursor: pointer;
+    position: relative;
+    transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+    border-right: 4px solid #fff;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .id {
+      opacity: 1;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 100%;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .name {
+      opacity: 1;
+      color: #fff;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 100%;
+      position: absolute;
+      width: 600px;
+      bottom: 0;
+      right: 0;
+      left: 110px;
+      top: 0;
+      transform: rotate(270deg);
+    }
+  }
+
+  .info-active {
+    display: none;
+  }
+
+  .tab {
+    flex: 2;
+    height: 100%;
+    width: 10%;
+    background: #162c4e;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    border-right: 1px solid #ffffff;
+    color: #ffffff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column-reverse;
+    font-weight: bold;
+    transition: all 0.4s ease;
+
+    &-id {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 100%;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    &-name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 100%;
+      transform: rotate(270deg);
+      width: 600px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      top: 0;
+      left: 110px;
+    }
+  }
+
+  .info {
+    flex: 2;
+    height: 100%;
+    width: 100%;
+    max-width: 450px;
+    background: rgba(18, 18, 18, 0.8);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 5rem;
+    padding-left: 8.5rem;
+
+    &-id {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 350px;
+      line-height: 100%;
+      letter-spacing: -0.03em;
+      color: rgb(80 80 80 / 40%);
+      position: absolute;
+      top: 0;
+      right: 62px;
+    }
+
+    &-name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 120%;
+      margin-bottom: 0.75rem;
+      width: 100%;
+      max-width: 20rem;
+      backdrop-filter: unset;
+    }
+
+    &-date {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 150%;
+      margin-bottom: 1.5625rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    &-text {
+      width: 70%;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 120%;
+      letter-spacing: 0.03em;
+      color: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-left: 8px solid rgba(255, 255, 255, 0.8);
+      padding: 0.75rem 1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: 1600px) {
+    .not-active {
+      .name {
+        left: 100px;
+      }
+    }
+
+    .tab {
+      &-name {
+        left: 100px;
+      }
+    }
+
+    .info {
+      max-width: 400px;
+      padding-left: 6.5rem;
+
+      &-text {
+        width: 80%;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .not-active {
+      .name {
+        left: 90px;
+      }
+    }
+
+    .tab {
+      &-name {
+        left: 90px;
+      }
+    }
+
+    .info {
+      max-width: 350px;
+      padding-left: 5.5rem;
+
+      &-text {
+        width: 99%;
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .info {
+      max-width: 300px;
+      padding-left: 4.5rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .not-active {
+      .name {
+        left: 85px;
+      }
+    }
+
+    .tab {
+      &-name {
+        left: 85px;
+      }
+    }
+
+    .info {
+      max-width: 250px;
+      padding-left: 3.5rem;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .not-active {
+      .name {
+        left: 80px;
+      }
+    }
+
+    .tab {
+      &-name {
+        left: 80px;
+      }
+    }
+
+    .info {
+      max-width: 200px;
+      padding-left: 3rem;
+    }
+  }
+
+  //Vertical accordion
+  .vertical-title {
+    text-align: center;
+    margin: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 104%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #162c4e;
+    opacity: 0.39;
+    margin-top: 48px;
+    margin-bottom: 21px;
+  }
+
+  .accordion {
+    padding: 0px;
+    margin: 0 30px;
+    opacity: 0;
+  }
+
+  .accordion li {
+    border-bottom: 2px solid red;
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .accordion-trigger {
+    margin: 1px 0 0;
+    padding: 15px 15px;
+    background: #ddd;
+    transition: 0.2s ease-in;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/img/back_mafia.png");
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+    &-id {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 100%;
+      text-align: right;
+      letter-spacing: -0.03em;
+      margin-right: 2rem;
+    }
+
+    &-name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 100%;
+    }
+  }
+
+  .accordion-trigger:hover {
+    cursor: pointer;
+    background: #162c4e;
+    border-top: none;
+  }
+
+  .accordion-content {
+    margin: 0;
+    position: relative;
+
+    &-img {
+      width: 100%;
+      max-width: 705px;
+    }
+  }
+
+  .accordion-panel {
+    flex: 2;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 44.1rem;
+    height: 38%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #ffffff;
+    padding-left: 40px;
+
+    &-id {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 152px;
+      line-height: 100%;
+      text-align: right;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.1);
+      position: absolute;
+      right: -20px;
+      top: 0;
+    }
+
+    &-name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 120%;
+      margin-bottom: 0.5rem;
+    }
+
+    &-date {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.25rem;
+    }
+
+    &-text {
+      width: 45%;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 120%;
+      padding: 0.75rem 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-left: 8px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+
+  .animate {
+    opacity: 1;
+  }
+
+  @media (max-width: 570px) {
+    .accordion-panel {
+      &-name {
+        margin-bottom: 0.25rem;
+      }
+
+      &-date {
+        margin-bottom: 0.5rem;
+      }
+
+      &-text {
+        width: 50%;
+        padding: 0.5rem 0rem;
+      }
+    }
+  }
+
+  @media (max-width: 460px) {
+    .accordion-trigger {
+      &-id {
+        font-size: 24px;
+      }
+
+      &-name {
+        font-size: 18px;
+      }
+    }
+
+    .accordion-panel {
+      &-id {
+        font-size: 80px;
+      }
+
+      &-name {
+        margin-bottom: 0.15rem;
+      }
+
+      &-date {
+        margin-bottom: 0.25rem;
+      }
+
+      &-text {
+        width: 50%;
+        padding: 0.25rem 0rem;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .accordion-panel {
+      &-name {
+        margin-bottom: 0.05rem;
+      }
+
+      &-date {
+        margin-bottom: 0.15rem;
+      }
+      &-text {
+        width: 65%;
+        padding: 0.25rem 0.15rem;
+      }
+    }
+  }
+}
