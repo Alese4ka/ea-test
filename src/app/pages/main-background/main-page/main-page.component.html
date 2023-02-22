@@ -1,5 +1,5 @@
 <div [@routeAnimations]="state" class="main">
-  <a href="#"><img class="main-logo logo" src="/assets/img/logo.svg" alt="logo"></a>
+  <a href="https://alese4ka.github.io/ea-test/"><img class="main-logo logo" src="/assets/img/logo.svg" alt="logo"></a>
   <div class="main-text text" [ngClass]="{animate: animate}">
     <h1 class="main-text-title">Under Construction</h1>
     <h4 class="main-text-extra">We're making lots of improvements and will be back soon</h4>
@@ -36,29 +36,32 @@
 </div>
 <div class="footer">
   <form class="footer-form" [formGroup]="subscribeForm" (ngSubmit)="onSubmitted()">
-    <input matInput id="email" class="footer-form-input" type="email" matInput [formControlName]="'email'"
-      placeholder="Enter your Email and get notified">
-    <button mat-mini-fab [disabled]="!subscribeForm.valid" (ngSubmit)="onSubmitted()" type="submit">
-      <mat-icon>
+    <div class="footer-form-block">
+      <input matInput id="email" class="footer-form-block-input" type="email" matInput [formControlName]="'email'"
+        placeholder="Enter your Email and get notified">
+      <button mat-mini-fab [disabled]="!subscribeForm.valid" (ngSubmit)="onSubmitted()" type="submit">
+        <mat-icon>
+          <span>
+            arrow_forward
+          </span>
+        </mat-icon>
+      </button>
+    </div>
+    <div *ngIf="
+        subscribeForm.controls['email'].hasError('email') &&
+        !subscribeForm.controls['email'].hasError('required');else content" class="footer-error">
+      <span>Please enter a valid email address</span>
+    </div>
+    <ng-template #content><span>''</span></ng-template>
+  </form>
+  <div class="footer-events">
+    <button class="footer-events-btn" (click)="openAllEventsPage()">
+      Other Events
+      <mat-icon class="main-event-button-icon">
         <span>
-          arrow_forward
+          arrow_downward
         </span>
       </mat-icon>
     </button>
-  </form>
-  <div *ngIf="
-        subscribeForm.controls['email'].hasError('email') &&
-        !subscribeForm.controls['email'].hasError('required')
-      ;else content" class="footer-error">
-    <span>Please enter a valid email address</span>
   </div>
-  <ng-template #content><span>''</span></ng-template>
-  <button class="footer-events" (click)="openAllEventsPage()">
-    Other Events
-    <mat-icon class="main-event-button-icon">
-      <span>
-        arrow_downward
-      </span>
-    </mat-icon>
-  </button>
 </div>
