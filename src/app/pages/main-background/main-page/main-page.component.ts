@@ -47,7 +47,6 @@ import { Router } from '@angular/router';
             animate('600ms', style({ opacity: 1, transform: 'translateY(0)' })),
           ]),
         ]),
-
         query('.counter', [
           style({
             opacity: 0,
